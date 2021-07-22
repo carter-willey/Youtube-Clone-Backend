@@ -12,9 +12,6 @@ from django.db.models import Q
 
 class PostReply(APIView):
     def post(self, request, comment_id):
-        comment_id = comment_id
-        comment_model = apps.get_model('commentsapp.Comments')
-        comment_object = comment_model.objects.get(pk=comment_id)
         serializer = RepliesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
