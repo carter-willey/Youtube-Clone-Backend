@@ -6,3 +6,4 @@ class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
         fields = ["video_id", "likes", "dislikes", "comment_text"]
+
