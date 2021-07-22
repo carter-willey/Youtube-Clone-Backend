@@ -24,20 +24,35 @@ class CommentsList(APIView):
         serializer = CommentsSerializer(comments, many=True)
         return Response(serializer.data)
 
+    """ MAY USE LATER INTO PROJECT
     def put(self, request, pk):
         video = self.get_object(pk)
-        """
         if song.do_you_like_the_song:
             song.likes = 1 + int(song.likes)
-        """
         serializer = CommentsSerializer(video, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    """
+    """
     def delete(self, request, pk):
         video = self.get_object(pk)
         serializer = CommentsSerializer(video)
         video.delete()
         return Response(serializer.data)
+    """
+
+
+class CommentLike(APIView):
+    def put(self, request, comment_id):
+        comment = Comments.objects.get(comment_id=comment_id)
+        comment.likes += 1
+        comment.save()
+
+
+class CommentDislike(APIView):
+    def put(self, request, comment_id):
+        comment = Comments.objects.get(id=comment_id)
+        comment.dislikes += 1
+        comment.save()
