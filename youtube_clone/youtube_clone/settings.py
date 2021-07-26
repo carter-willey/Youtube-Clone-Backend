@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'youtube_clone.urls'
@@ -127,3 +128,5 @@ try:
     from youtube_clone.local_settings import *
 except ImportError:
     pass
+
+CORS_ORIGIN_ALLOW_ALL = True
