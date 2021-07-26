@@ -45,14 +45,16 @@ class CommentsList(APIView):
 
 
 class CommentLike(APIView):
-    def put(self, request, comment_id):
-        comment = Comments.objects.get(comment_id=comment_id)
+    def patch(self, request, comment_id):
+        comment = Comments.objects.get(id=comment_id)
         comment.likes += 1
         comment.save()
+        return Response(status=status.HTTP_200_OK)
 
 
 class CommentDislike(APIView):
-    def put(self, request, comment_id):
+    def patch(self, request, comment_id):
         comment = Comments.objects.get(id=comment_id)
         comment.dislikes += 1
         comment.save()
+        return Response(status=status.HTTP_200_OK)
